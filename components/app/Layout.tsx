@@ -141,7 +141,7 @@ export default function Layout({ siteId, children }: LayoutProps) {
                       !tab ? "border-black" : "border-transparent"
                     } py-3`}
                   >
-                    Posts
+                    Games
                   </a>
                 </Link>
                 <Link href={`/site/${router.query.id}/drafts`}>

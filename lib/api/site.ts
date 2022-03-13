@@ -5,6 +5,28 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type { Site } from ".prisma/client";
 import type { Session } from "next-auth";
 
+// TABLELAND IMPLEMENTATION
+import { connect } from "@textile/tableland";
+
+// store the tableland connection as a private plain Object
+const getConnection = (function () {
+  let connection: any;
+  return async function (options?: any) {
+    if (connection) return connection;
+
+    connection = await connect({
+      host: process.env.validatorHost as string
+    });
+
+    return connection;
+  };
+})();
+export interface Game {
+  name: string;
+  deleted: boolean;
+  id: number;
+}
+
 /**
  * Get Site
  *

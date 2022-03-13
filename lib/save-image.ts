@@ -2,13 +2,41 @@ import { decode } from "blurhash";
 
 import type { UserSettings } from "@/types";
 
+import * as fs from "fs";
+import pinataSDK, { PinataPinOptions, PinataPinResponse } from "@pinata/sdk";
+const pinata = pinataSDK(
+  `${process.env.pinataApiKey}`,
+  `${process.env.pinataApiKeySecret}`
+);
+
 export async function saveImage<U = UserSettings | null>(
   imageData: string,
   data: U,
   setData: (data: U) => void
 ): Promise<void> {
   try {
-    const res = await fetch(`/api/blurhash?url=${imageData}`);
+    let pinataResult: string | undefined;
+    const readableStreamForFile = fs.createReadStream("./yourfile.png");
+    const options: PinataPinOptions = {
+      pinataMetadata: {
+        name: imageData
+      },
+      pinataOptions: {
+        cidVersion: 0
+      }
+    };
+    pinata
+      .pinFileToIPFS(readableStreamForFile, options)
+      .then((result: PinataPinResponse) => {
+        //handle results here
+        console.log(result);
+        pinataResult = result.IpfsHash;
+      })
+      .catch((err) => {
+        //handle error here
+        console.log(err);
+      });
+    const res = await fetch(`/api/blurhash?url=${pinataResult}`);
 
     if (res.ok) {
       const blurhash = await res.json();

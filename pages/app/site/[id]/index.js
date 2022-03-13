@@ -23,7 +23,7 @@ export default function SiteIndex() {
         if (!data?.site) {
           router.push("/");
         }
-      },
+      }
     }
   );
 
@@ -31,8 +31,8 @@ export default function SiteIndex() {
     const res = await fetch(`/api/post?siteId=${siteId}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     });
     if (res.ok) {
       const data = await res.json();
@@ -45,7 +45,7 @@ export default function SiteIndex() {
       <div className="py-20 max-w-screen-xl mx-auto px-10 sm:px-20">
         <div className="flex flex-col sm:flex-row space-y-5 sm:space-y-0 justify-between items-center">
           <h1 className="font-cal text-5xl">
-            Posts for {data ? data?.site?.name : "..."}
+            Games for {data ? data?.site?.name : "..."}
           </h1>
           <button
             onClick={() => {
@@ -62,7 +62,7 @@ export default function SiteIndex() {
               <LoadingDots />
             ) : (
               <>
-                New Post <span className="ml-2">＋</span>
+                New game <span className="ml-2">＋</span>
               </>
             )}
           </button>
@@ -113,7 +113,7 @@ export default function SiteIndex() {
                 </div>
                 <div className="text-center">
                   <p className="text-2xl font-cal text-gray-600">
-                    No posts yet. Click "New Post" to create one.
+                    No games yet. Click "New game" to create one.
                   </p>
                 </div>
               </>

@@ -40,23 +40,23 @@ export default function Login() {
         <meta name="twitter:image" content={logo} />
       </Head>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
+        {/* <img
           className="mx-auto h-12 w-auto"
           src="/logo.png"
           alt="Platforms Starter Kit"
-        />
+        /> */}
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Platforms Starter Kit
+          Game as a service platform
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Build multi-tenant applications with custom domains. <br /> Read the{" "}
-          <a
+          Multi-tenant application for games hosting with custom domains. <br />{" "}
+          {/* <a
             href="https://demo.vercel.pub/platforms-starter-kit"
             target="_blank"
             className="font-medium text-black hover:text-gray-800"
           >
             blog post
-          </a>
+          </a> */}
         </p>
       </div>
 
